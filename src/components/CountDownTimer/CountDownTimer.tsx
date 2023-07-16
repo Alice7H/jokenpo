@@ -22,7 +22,7 @@ export function CountDownTimer({calculateResults}: {calculateResults: () => void
   return (
     <>
       <p className="counter">{timeLeft}</p>
-      <button type="button" onClick={()=> setTimeLeft(3)}>
+      <button type="button" onClick={()=> setTimeLeft(3)} className="button-counter">
         Iniciar contagem regressiva
       </button>
     </>

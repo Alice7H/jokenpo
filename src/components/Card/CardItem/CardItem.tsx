@@ -1,4 +1,11 @@
-import { Item } from "../Card";
+import { MouseEvent} from "react";
+
+interface Item {
+  id: string;
+  name: string;
+  imageSrc: string;
+  onClick: (e: MouseEvent<HTMLElement>) => void;
+}
 
 interface ICardItem {
   object: Item;

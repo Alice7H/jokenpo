@@ -1,5 +1,5 @@
 import { MouseEvent, useState} from "react";
-import { Card } from "../Card/Card";
+import { Card } from "../index";
 import { Options } from "../../types/Options";
 import { Player } from "../../types/Player";
 
@@ -8,7 +8,7 @@ interface IForm {
   getResult: (p: Player) => void;
 }
 
-export function Form({initialPlayer, getResult}: IForm) {
+export function ShowPlayer({initialPlayer, getResult}: IForm) {
   const [player, setPlayer] = useState<Player>(initialPlayer);
 
   function handleClick(event: MouseEvent<HTMLElement>) {

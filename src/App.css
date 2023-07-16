@@ -32,3 +32,9 @@
 .card button:disabled {
   background-color: #fce7cb;
 }
+
+.button-reload {
+  background-color: #960f0f;
+  color: white;
+  margin-top: 1.5rem;
+}

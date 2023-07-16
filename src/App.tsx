@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import './App.css'
-import { CountDownTimer } from './components';
-import { Form } from './components/Player/Form';
+import { CountDownTimer, Restart, ShowPlayer } from './components';
 import { Player } from './types/Player';
 import { calculateWinner, player1, player2 } from './utils/helper';
+
+import { ToastContainer, ToastOptions, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function App() {
   const [players, setPlayers] = useState<Player[]>([player1, player2]);
   const firstPlayer = players[0];
+  const lastPlayer = players[1];
 
   const getResult = ( newPlayer: Player) => {
     setPlayers([...players].map(object => {
@@ -15,11 +19,17 @@ export default function App() {
     }))
   }
 
+  const optionsToast: ToastOptions = {
+    position: "bottom-center",
+    autoClose: 5000,
+    closeOnClick: true,
+    theme: "dark",
+  }
+
    const calculateResults = () => {
     const choices = players.map(player => player.choose);
     const result = calculateWinner(choices);
-    alert(result);
-    window.location.reload();
+    toast.success(result, optionsToast);
   }
 
   return (
@@ -27,13 +37,20 @@ export default function App() {
       <h1>JoKenPo</h1>
       <div className='board'>
         { !firstPlayer.ready
-          ? <Form key={firstPlayer.id} getResult={getResult} initialPlayer={firstPlayer} />
+          ? <ShowPlayer key={firstPlayer.id} getResult={getResult} initialPlayer={firstPlayer} />
           : (players.map(player => (player !== firstPlayer && !player.ready)
-            && <Form key={player.id} getResult={getResult} initialPlayer={player} />
+            && <ShowPlayer key={player.id} getResult={getResult} initialPlayer={player} />
           ))
         }
-        {players[1].ready &&  <CountDownTimer calculateResults={calculateResults} />}
+        {lastPlayer.ready && (
+          <>
+            <CountDownTimer calculateResults={calculateResults} />
+            <Restart />
+          </>
+         )
+        }
       </div>
+      <ToastContainer />
     </>
   )
 }

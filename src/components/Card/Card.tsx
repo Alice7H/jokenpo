@@ -2,21 +2,14 @@ import paperImg from '../../assets/paper.png'
 import rockImg from '../../assets/rock.png'
 import scissorImg from '../../assets/scissor.png'
 import { Fragment, MouseEvent } from 'react';
-import { CardItem } from './CardItem/CardItem';
+import { CardItem } from '../index';
 
 interface ICard {
   onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
-export interface Item {
-  id: string;
-  name: string;
-  imageSrc: string;
-  onClick: (e: MouseEvent<HTMLElement>) => void;
-}
-
 export function Card ({onClick}: ICard) {
-  const options = [
+  const cardOptions = [
     {
       id: 'rock',
       name: 'Pedra',
@@ -42,7 +35,7 @@ export function Card ({onClick}: ICard) {
   return (
     <div className="card">
       {
-        options.map(opt =>
+        cardOptions.map(opt =>
         <Fragment key={opt.id + index}>
           <CardItem
             object={opt}
