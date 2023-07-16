@@ -34,7 +34,7 @@ export default function App() {
 
   return (
     <>
-      <h1>JoKenPo</h1>
+      <h1>JoKenPô</h1>
       <div className='board'>
         { !firstPlayer.ready
           ? <ShowPlayer key={firstPlayer.id} getResult={getResult} initialPlayer={firstPlayer} />
